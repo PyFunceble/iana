@@ -1,2 +1,2 @@
 # iana
-# iana Distribute a more updated version `iana-domains-db.json`.
+Distribute a more updated version `iana-domains-db.json`.

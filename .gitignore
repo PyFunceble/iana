@@ -1,0 +1,8 @@
+# PyFunceble related
+db_types/
+.PyFunceble*yaml
+dir_structure*json
+public-suffix.json
+
+# Conda related
+miniconda.sh
