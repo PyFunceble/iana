@@ -3,6 +3,7 @@ db_types/
 .PyFunceble*yaml
 dir_structure*json
 public-suffix.json
+.pyfunceble_intern_downtime.json
 
 # Conda related
 miniconda.sh
