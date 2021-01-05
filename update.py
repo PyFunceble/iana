@@ -70,7 +70,7 @@ OUTPUT_FILE = "iana-domains-db.json"
 if __name__ == "__main__":
     # We initiate the repository.
     CI_ENGINE = GitHubActions(
-        authorized=False, end_commit_message=f"Update of {OUTPUT_FILE}"
+        authorized=True, end_commit_message=f"Update of {OUTPUT_FILE}"
     )
     CI_ENGINE.init()
 
