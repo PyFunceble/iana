@@ -61,31 +61,22 @@ License:
     SOFTWARE.
 """
 
+from PyFunceble.cli.continuous_integration.exceptions import StopExecution
+from PyFunceble.cli.continuous_integration.github_actions import GitHubActions
+from PyFunceble.cli.scripts.iana import IanaDBGenerator
 
-import colorama
-import PyFunceble
-from PyFunceble.cli import Iana
-from PyFunceble.engine import ci
+OUTPUT_FILE = "iana-domains-db.json"
 
 if __name__ == "__main__":
-
-    colorama.init(autoreset=True)
-
-    # We load our custom configuration
-    CUSTOM_CONFIG = {
-        "ci": True,
-        "ci_autosave_final_commit": "Update iana-domains-db.json",
-        "multiprocess": True,
-        "maximal_processes": 50,
-        "dns_server": ["one.one.one.one"],
-    }
-
-    PyFunceble.load_config(custom=CUSTOM_CONFIG)
-
-    # We initiate the repostiory.
-    CI_ENGINE = ci.TravisCI()
+    # We initiate the repository.
+    CI_ENGINE = GitHubActions(
+        authorized=False, end_commit_message=f"Update of {OUTPUT_FILE}"
+    )
     CI_ENGINE.init()
 
-    Iana().update()
+    IanaDBGenerator(destination=OUTPUT_FILE).start()
 
-    CI_ENGINE.end_commit()
+    try:
+        CI_ENGINE.apply_end_commit()
+    except StopExecution:
+        pass
