@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --pre PyFunceble-dev 
+          pip install PyFunceble-dev
 
       - name: Get PyFunceble version
         run: |
